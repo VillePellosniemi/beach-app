@@ -5,9 +5,7 @@ function AdvanceSearch() {
     return(
 
         <div className = "mt-8 rounded-md">
-
             <SearchForm/>
-
         </div>
     )
 }
