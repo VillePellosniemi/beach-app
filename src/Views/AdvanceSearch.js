@@ -1,16 +1,17 @@
 import React from 'react';
-
-
+import SearchForm from "./SearchForm";
 
 function AdvanceSearch() {
     return(
 
+        <div className = "mt-8 rounded-md">
 
+            <SearchForm/>
 
-        <div>
-            <div className = "text-center">Edit Views/AdvanceSearch.js</div>
         </div>
     )
 }
 
+
 export default AdvanceSearch
+
