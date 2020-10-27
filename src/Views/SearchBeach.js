@@ -4,21 +4,21 @@ import { Link } from 'react-router-dom';
 import { useAxiosGet } from '../Hooks/HttpRequests';
 
 class SearchBeach extends React.Component {
-
-    constructor(props){
+     constructor(props){
+         console.log(props)
         super(props);
         this.state = {
-            beachName: this.props.beachNames,
+            beachName: this.props.beachName,
         };
     }
 
     render(){
-        alert('d');
         const {beachName} = this.state;
         return(
             <React.Fragment>
                 {beachName}
             </React.Fragment>
+
         )
     }
 }

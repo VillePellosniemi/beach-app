@@ -19,16 +19,14 @@ class SearchForm extends React.Component {
 
     handleSubmit = event =>{
         event.preventDefault();
-
         this.setState({
             submitted: true,
-            beachName: event.target.value
+            beachName: this.state.beachName
         });
 
+
     // console.log('A name was submitted: ' + this.state.beachName)
-        return (
-            <SearchBeach beachNames={this.state.beachName}/>
-        )
+
 
         }
 
@@ -45,9 +43,13 @@ class SearchForm extends React.Component {
                     />
                     <input className="m-1 text-center" type="submit" value="Submit" />
                 </form>
+              {this.state.submitted ? <SearchBeach beachName={this.state.beachName}/> : null}
             </React.Fragment>
         );
     }
 
 }
+
+
+
 export default SearchForm
