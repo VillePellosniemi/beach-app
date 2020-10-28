@@ -50,11 +50,19 @@ class SearchBeach extends React.Component {
 
         return(
 
-            <Home/>
+         <Home/>
 
         )
     }
 }
 
+class Class {
+    render(){
+        return(
+           alert('d')
+        )
+    }
+
+}
 
 export default SearchBeach
