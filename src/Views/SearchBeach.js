@@ -5,7 +5,7 @@ import { useAxiosGet } from '../Hooks/HttpRequests';
 import Home from '../Views/Home'
 
 class SearchBeach extends React.Component {
-  /* Home() {
+ /* Home() {
     const url = 'https://iot.fvh.fi/opendata/uiras/uiras2_v1.json'
     let beaches = useAxiosGet(url)
     let content = null
@@ -37,7 +37,7 @@ class SearchBeach extends React.Component {
 */
 
      constructor(props){
-         console.log(props)
+
         super(props);
         this.state = {
             beachName: this.props.beachName,
@@ -47,22 +47,16 @@ class SearchBeach extends React.Component {
 
     render(){
         const {beachName} = this.state;
-
+        console.log({beachName})
         return(
 
-         <Home/>
+            <Home  />
+
 
         )
     }
 }
 
-class Class {
-    render(){
-        return(
-           alert('d')
-        )
-    }
 
-}
 
 export default SearchBeach

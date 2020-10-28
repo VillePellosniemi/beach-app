@@ -29,7 +29,7 @@ function Home() {
     }
 
     return (
-        <div> {content} </div>
+        <div  className="overflow-scroll max-h-screen"> {content} </div>
     )
 }
 

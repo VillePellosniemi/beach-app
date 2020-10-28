@@ -13,10 +13,10 @@ function App() {
   return (
     <div>
       <Router>
-          <Header />
+          <Header/>
 
           <Switch>
-              <Route exact path = "/"><Home /></Route>
+              <Route exact path = "/"><Home/></Route>
               <Route exact path = "/favorites"><Favorites /></Route>
               <Route exact path = "/promodiscount"><PromoDiscount /></Route>
               <Route exact path = "/setting"><Setting /></Route>
