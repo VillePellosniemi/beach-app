@@ -16,8 +16,9 @@ function Home() {
         content = Object.keys(beaches.dt).map((beach, key) => {
             //get beach ID from API
             const id = Object.values(beach).join("")
-            
+
             return (
+
                 <h1 className = "p-5" key = {key}> 
                     <Link to = {`/${id}`}>
                         {beaches.dt[beach].meta.name}
@@ -28,7 +29,7 @@ function Home() {
     }
 
     return (
-        <div> {content} </div>
+        <div  className="overflow-scroll max-h-screen"> {content} </div>
     )
 }
 
