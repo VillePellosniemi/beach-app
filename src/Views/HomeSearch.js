@@ -23,7 +23,7 @@ const HomeSearch = (props) => {
         // console.log( props.beachName + beaches.dt[beach].meta.name)
         //get beach ID from API
         const id = Object.values(beach).join("")
-        if(props.beachName == beaches.dt[beach].meta.name){
+        if(beaches.dt[beach].meta.name.toLowerCase().includes(props.beachName)){
           return (
 
               <h1 className="p-5" key={key}>
