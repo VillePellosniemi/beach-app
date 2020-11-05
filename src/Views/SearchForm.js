@@ -1,15 +1,12 @@
 import React from 'react';
-import SearchBeach from "../Views/SearchBeach";
+import HomeSearch from "./HomeSearch";
+
 
 class SearchForm extends React.Component {
-
-    constructor(props){
-        super(props);
-        this.state = {
+   state = {
             beachName: '',
             submitted: false
-        };
-    }
+    };
 
     handleChange = event => {
         this.setState({
@@ -22,18 +19,13 @@ class SearchForm extends React.Component {
         this.setState({
             submitted: true,
             beachName: this.state.beachName
-        });
-
-
-    // console.log('A name was submitted: ' + this.state.beachName)
-
-
-        }
+        })
+    };
 
     render() {
         return (
             <React.Fragment>
-                <form className="m-1 text-center" onSubmit={this.handleSubmit}>
+                <form id="searchField" className="m-1 text-center" onSubmit={this.handleSubmit} >
                     <input
                         className="outline-black"
                         type="text"
@@ -43,11 +35,13 @@ class SearchForm extends React.Component {
                     />
                     <input className="m-1 text-center" type="submit" value="Submit" />
                 </form>
-              {this.state.submitted ? <SearchBeach beachName={this.state.beachName}/> : null}
-            </React.Fragment>
-        );
-    }
+              {this.state.submitted ? <HomeSearch beachName={this.state.beachName}/> : null}
 
+            </React.Fragment>
+
+        )
+
+    }
 }
 
 
