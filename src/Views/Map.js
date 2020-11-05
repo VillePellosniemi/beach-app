@@ -4,14 +4,14 @@ import { Link, useParams } from 'react-router-dom';
 import Loader from '../Components/Loader'
 import moment from 'moment'
 import { useAxiosGet } from '../Hooks/HttpRequests';
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
 
 const MapComponent = compose(
   withProps({
     googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",
-    loadingElement: <div style={{ height: `100%` }} />,
+    loadingElement: <div style={{ height: `80%` }} />,
     containerElement: <div style={{ height: `400px` }} />,
-    mapElement: <div style={{ height: '100vh', width: '100%' }} />,
+    mapElement: <div style={{ height: '95vh', width: '100%' }} />,
   }),
   withScriptjs,
   withGoogleMap
@@ -20,7 +20,24 @@ const MapComponent = compose(
     defaultZoom={14}
     defaultCenter={{ lat: props.lat, lng: props.lng }}
   >
-    {props.isMarkerShown && <Marker position={{ lat: props.lat, lng: props.lng }} onClick={props.onMarkerClick} />}
+    {props.isMarkerShown &&
+      <Marker position={{ lat: props.lat, lng: props.lng }} onClick={props.onMarkerClick}>
+        {props.isOpen &&
+          <InfoWindow onCloseClick={props.onhandleCloseClick}>
+            <div>
+              <h1 style={{ fontFamily: "sans-serif", fontSize: "14px", marginBottom: "0.5em" }}>{props.name}</h1>
+              {props.site_url &&
+                <a style={{ color: "#427fed" }} href={props.site_url}>View {props.name} website</a>
+              }
+              <br></br>
+              <a style={{ color: "#427fed" }} href={"https://maps.google.com?q=" + props.name + "::" + props.lat + "," + props.lng}>View on Google Maps</a>
+              <br></br>
+              <a style={{ color: "#427fed" }} href={"https://reittiopas.hsl.fi/reitti/%20/" + props.name + "::" + props.lat + "," + props.lng}>View on HSL</a>
+            </div>
+          </InfoWindow>
+        }
+      </Marker>
+    }
   </GoogleMap>
 )
 
@@ -40,37 +57,52 @@ class MapWithMarkers extends React.PureComponent {
   }
 
   handleMarkerClick = () => {
-    this.setState({ isMarkerShown: false })
-    this.delayedShowMarker()
+    console.log("Marker clicked!");
+    this.setState({ isOpen: true })
+  }
+
+  handleCloseClick = () => {
+    console.log("Marker Closed!");
+    this.setState({ isOpen: false })
   }
 
   render() {
     return (
       <MapComponent
-      lat = {this.props.lat}
-      lng = {this.props.lng}
+        lat={this.props.lat}
+        lng={this.props.lng}
+        name={this.props.name}
+        site_url={this.props.site_url}
         isMarkerShown={this.state.isMarkerShown}
+        isOpen={this.state.isOpen}
         onMarkerClick={this.handleMarkerClick}
+        onhandleCloseClick={this.handleCloseClick}
       />
     )
   }
 }
 
 function SimpleMap(Component) {
-    return function WrappedComponent(props) {
-        const { name } = useParams();
-        const url = "https://iot.fvh.fi/opendata/uiras/uiras2_v1.json"
-        let beach = useAxiosGet(url)
-        let content = null
-        if (beach.loading) {
-            content = <Loader />
-        }
-        if (beach.dt) {
-            return <Component {...props} lat={beach.dt[name].meta.lat} lng={beach.dt[name].meta.lon} />;
-        }
-        return (
-            <div> {content} </div>
-        )
+  return function WrappedComponent(props) {
+    const { name } = useParams();
+    const url = "https://iot.fvh.fi/opendata/uiras/uiras2_v1.json"
+    let beach = useAxiosGet(url)
+    let content = null
+    if (beach.loading) {
+      content = <Loader />
     }
+    if (beach.dt) {
+      console.log(beach);
+      return <Component {...props}
+        lat={beach.dt[name].meta.lat}
+        lng={beach.dt[name].meta.lon}
+        name={beach.dt[name].meta.name}
+        site_url={beach.dt[name].meta.site_url}
+      />;
+    }
+    return (
+      <div> {content} </div>
+    )
   }
+}
 export default SimpleMap(MapWithMarkers);
