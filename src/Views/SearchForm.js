@@ -35,8 +35,9 @@ class SearchForm extends React.Component {
                     />
                     <input className="m-1 text-center" type="submit" value="Submit" />
                 </form>
+              <div className="mt-8" >
               {this.state.submitted ? <HomeSearch beachName={this.state.beachName}/> : null}
-
+              </div>
             </React.Fragment>
 
         )
