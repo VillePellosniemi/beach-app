@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import moment from 'moment'
 import { useAxiosGet } from '../Hooks/HttpRequests';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThumbsUp, faHeart, faMap } from '@fortawesome/free-solid-svg-icons';
+import { faThumbsUp, faHeart, faMap, faGlobeEurope, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 function SinglePage() {
     const {name} = useParams();
@@ -21,7 +21,9 @@ function SinglePage() {
     if(beach.dt) {
             //time since the sensors last updated
             const time = moment(beach.dt[name].data.slice(-1)[0].time).fromNow()
-            
+            const url = beach.dt[name].meta.servicemap_url
+            const web = beach.dt[name].meta.site_url
+
             return (
                 <div className="bg-gray-100">
                     <img src={`images/${name}.jpg`} className="relative object-cover h-60 w-full" />
@@ -49,26 +51,26 @@ function SinglePage() {
                         </div>
 
                         <div className = "flex content-center text-xl pb-2 px-2 "> 
-                            <div className="flex-1 text-center rounded-xl bg-gray-200 h-40 m-2 p-6">
+                            <div className="flex-1 text-center rounded-xl bg-gray-200 h-40 m-2 pt-8 p-6">
                                 <h1>Water temp</h1>
-                                <h1 className="text-5xl">{Math.round(beach.dt[name].data.slice(-1)[0].temp_water*10)/10}°C </h1>
+                                <h1 className="text-4xl">{Math.round(beach.dt[name].data.slice(-1)[0].temp_water*10)/10}°C </h1>
                             </div>
 
-                            <div className="flex-1 text-center rounded-xl bg-gray-200 h-40 m-2 p-6">
+                            <div className="flex-1 text-center rounded-xl bg-gray-200 h-40 m-2 pt-8 p-6">
                                 <h1>Air temp</h1>
-                                <h1 className="text-5xl">{Math.round(beach.dt[name].data.slice(-1)[0].temp_air*10)/10}°C </h1>
+                                <h1 className="text-4xl">{Math.round(beach.dt[name].data.slice(-1)[0].temp_air*10)/10}°C </h1>
                             </div>
                         </div>
-
-                        <div className = "flex content-center text-xl pb-x px-2 mb-5"> 
-                            <div className="flex-1 text-center rounded-xl bg-gray-200 h-40 m-2 p-6">
-                                <h1>Facilities</h1>
-                                <h1 className="text-5xl">N/A</h1>
+                        
+                        <div className = "flex content-center text-xl pb-2 px-2"> 
+                            <div className="flex-1 text-center rounded-xl bg-gray-200 h-40 m-2 pt-8 p-6">
+                                <h1>Services</h1>
+                                <h1 className="text-4xl"><a href={`${url}?p=1&t=accessibilityDetails`}><FontAwesomeIcon icon = {faInfoCircle}/></a></h1>
                             </div>
-
-                            <div className="flex-1 text-center rounded-xl bg-gray-200 h-40 m-2 p-6">
-                                <h1>Parking</h1>
-                                <h1 className="text-5xl">N/A</h1>
+                        
+                            <div className="flex-1 text-center rounded-xl bg-gray-200 h-40 m-2 pt-8 p-6">
+                                <h1>Website</h1>
+                                <h1 className="text-4xl"><a href={`${web}`}><FontAwesomeIcon icon = {faGlobeEurope}/></a></h1>
                             </div>
                         </div>
 

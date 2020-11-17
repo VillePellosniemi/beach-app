@@ -25,14 +25,10 @@ const MapComponent = compose(
         {props.isOpen &&
           <InfoWindow onCloseClick={props.onhandleCloseClick}>
             <div>
-              <h1 style={{ fontFamily: "sans-serif", fontSize: "14px", marginBottom: "0.5em" }}>{props.name}</h1>
-              {props.site_url &&
-                <a style={{ color: "#427fed" }} href={props.site_url}>View {props.name} website</a>
-              }
-              <br></br>
-              <a style={{ color: "#427fed" }} href={"https://maps.google.com?q=" + props.name + "::" + props.lat + "," + props.lng}>View on Google Maps</a>
-              <br></br>
-              <a style={{ color: "#427fed" }} href={"https://reittiopas.hsl.fi/reitti/%20/" + props.name + "::" + props.lat + "," + props.lng}>View on HSL</a>
+              <h1 className="text-base mb-2 font-bold text-center">{props.name}</h1>
+              <a className="text-blue-400 text-base" href={"https://maps.google.com?q=" + props.name + "::" + props.lat + "," + props.lng}>View on Google Maps</a>
+              <br/>
+              <a className="text-blue-400 text-base" href={"https://reittiopas.hsl.fi/reitti/%20/" + props.name + "::" + props.lat + "," + props.lng}>View on HSL</a>
             </div>
           </InfoWindow>
         }

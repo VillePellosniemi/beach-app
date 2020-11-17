@@ -38,7 +38,7 @@ class SearchForm extends React.Component {
                         onChange={this.handleChange}
                     />
 
-                    <input className="absolute right-0 top-0 mt-4 mr-3 text-center text-white px-2 rounded-lg bg-green-400" type="submit" value="Submit" />
+                    <input className="absolute right-0 top-0 h-10 mt-2 text-center text-white px-2 rounded-r-xl bg-green-400" type="submit" value="Submit" />
                 </form>
 
                 <div>
