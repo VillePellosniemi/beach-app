@@ -19,17 +19,18 @@ function Home() {
 
             return (
 
-                <h1 className = "p-5" key = {key}> 
+                <div className = "block relative pt-4 px-5" key = {key}> 
                     <Link to = {`/${id}`}>
-                        {beaches.dt[beach].meta.name}
+                        <img src={`images/${id}.jpg`} className="object-cover rounded-xl h-40 w-full" />
+                        <div className="w-2/3 truncate text-white text-xl font-medium absolute bottom-0 left-3 pl-3 pb-3">{beaches.dt[beach].meta.name} </div>
                     </Link>
-                </h1>
+                </div>
             )
         })
     }
 
     return (
-        <div  className="overflow-scroll max-h-screen"> {content} </div>
+        <div  className="overflow-scroll w-full max-h-screen pb-5"> {content} </div>
     )
 }
 

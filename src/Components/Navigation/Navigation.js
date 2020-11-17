@@ -22,7 +22,7 @@ function Navigation() {
 
     return (
         <nav>
-            <span className="text-center font-bold p-3">
+            <span className="text-center text-xl font-bold p-3">
                 <FontAwesomeIcon
                     icon = {faBars}
                     onClick = {() => setShowMenu(!showMenu)}

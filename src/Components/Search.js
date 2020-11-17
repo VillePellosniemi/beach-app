@@ -16,12 +16,12 @@ function Search() {
         from: { position: 'absolute', opacity: 0 },
         enter: { opacity: 1 },
         leave: { opacity: 0 },
-        config: { duration: 500 }
+        config: { duration: 100 }
         })
     
     return (
         <div>
-            <span className="text-center font-bold p-3">
+            <span className="text-center text-xl font-bold p-3">
                 <FontAwesomeIcon
                     icon = {faSearch}
                     onClick = {() => setShowSearch(!showSearch)}
@@ -48,7 +48,7 @@ function Search() {
                     key={key} 
                     style={props}
                     style={centered}
-                    className = "w-2/3 items-center bg-white rounded shadow z-50 p-5 overflow-auto"
+                    className = "w-3/4 h-2/3 items-center bg-white rounded-xl pb-10 shadow z-50 px-3"
                 >
                     <AdvanceSearch />
                 </animated.div>

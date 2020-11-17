@@ -4,7 +4,7 @@ import SearchForm from "./SearchForm";
 function AdvanceSearch() {
     return(
 
-        <div className = "mt-8 rounded-md">
+        <div className = "h-full mt-5">
             <SearchForm/>
         </div>
     )

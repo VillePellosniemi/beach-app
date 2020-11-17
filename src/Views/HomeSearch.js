@@ -40,7 +40,7 @@ const HomeSearch = (props) => {
     }
 
     return (
-        <div className="overflow-scroll max-h-screen"> {content} </div>
+        <div className="overflow-auto h-40 text-left font-xl font-semibold pb-3"> {content} </div>
     )
   };
 

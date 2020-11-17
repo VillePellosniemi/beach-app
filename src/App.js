@@ -11,7 +11,7 @@ import Map from './Views/Map'
 
 function App() {
   return (
-    <div>
+    <div className="h-screen">
       <Router>
           <Header/>
 
