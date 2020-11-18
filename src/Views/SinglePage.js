@@ -107,9 +107,6 @@ class SinglePageClass extends React.PureComponent {
 
     handleFavoriteClick = () => {
         console.log("Favorite clicked! ", this.props.name);
-        if (this.props.favorites == null) {
-            this.props.favorites = [];
-        }
         if (!this.props.favorites.includes(this.props.name)) {
             this.props.favorites.push(this.props.name);
             localStorage.setItem("favorites", JSON.stringify(this.props.favorites));
@@ -161,7 +158,9 @@ function SinglePage(Component) {
         if (beach.loading) {
             content = <Loader />
         }
-
+        if (!favorites) {
+            favorites = [];
+        }
         if (favorites && favorites.includes(name)) {
             heart = 'text-red-500';
             favoriteMessage = 'favorited'
