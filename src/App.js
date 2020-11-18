@@ -18,11 +18,10 @@ function App() {
           <Switch>
               <Route exact path = "/"><Home/></Route>
               <Route exact path = "/favorites"><Favorites /></Route>
-              <Route exact path = "/promodiscount"><PromoDiscount /></Route>
+              <Route exact path = "/:name/promodiscount"><PromoDiscount /></Route>
               <Route exact path = "/setting"><Setting /></Route>
               <Route exact path = "/:name"><SinglePage /></Route>
               <Route exact path = "/:name/map"><Map /></Route>
-
           </Switch>
       </Router>
     </div>

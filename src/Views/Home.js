@@ -30,22 +30,22 @@ function Home() {
             const d = distanceCal(lat, long, lat1, lon1)/1000
 
             return (
-                <div className = "block relative pb-5 px-5" key = {key}> 
-                    <Link to = {`/${id}`}>
-                        <img src={`images/${id}.jpg`} className="object-cover rounded-xl h-40 w-full" />
-                        
-                        <div className="w-full text-white font-medium absolute bottom-0 left-3 pl-5">
-                            <h1 className="w-2/3 truncate text-2xl">{beaches.dt[beach].meta.name}</h1>
-                            <h1 className="text-base italic pb-8">{(Math.round(d*10)/10)} km away</h1>
-                        </div>
-                    </Link>
-                </div>
+                    <div className = "block relative pb-5 px-5" key = {key}>
+                        <Link to = {`/${id}`}>
+                            <img src={`images/${id}.jpg`} className="object-cover rounded-xl h-40 w-full" />
+                            
+                            <div className="w-full text-white font-medium absolute bottom-0 left-3 pl-5">
+                                <h1 className="w-2/3 truncate text-2xl">{beaches.dt[beach].meta.name}</h1>
+                                <h1 className="text-base italic pb-8">{(Math.round(d*10)/10)} km away</h1>
+                            </div>
+                        </Link>
+                    </div>
             )
         })
     }
 
     return (
-        <div className="overflow-scroll w-full max-h-screen"> {content} </div>
+            <div className="overflow-scroll w-full max-h-screen pt-5"> {content} </div>
     )
 }
 

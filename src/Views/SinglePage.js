@@ -14,7 +14,7 @@ const SinglePageComponent = compose(
         <img src={`images/${props.name}.jpg`} className="relative object-cover h-60 w-full" />
 
         <div className="absolute w-full -mt-20 rounded-t-3xl bg-white py-8">
-            <h1 className="text-center font-bold text-xl">{props.beach_name} </h1>
+            <h1 className="text-center font-bold text-3xl">{props.beach_name} </h1>
 
             <div className="flex items-center p-3">
                 <span className="flex-1 text-center text-green-500 text-xl" onClick={props.updateLikes}>
@@ -32,6 +32,13 @@ const SinglePageComponent = compose(
                         <FontAwesomeIcon icon={faMap} />
                         <h1 className="text-base">map</h1>
                     </Link>
+                </span>
+
+                <span className="flex-1 text-center text-yellow-500 text-xl">
+                    <a href={`${props.web}`}>
+                        <FontAwesomeIcon icon={faGlobeEurope} />
+                        <h1 className="text-base">website</h1>
+                    </a>
                 </span>
             </div>
 
@@ -54,8 +61,10 @@ const SinglePageComponent = compose(
                 </div>
 
                 <div className="flex-1 text-center rounded-xl bg-gray-200 h-40 m-2 pt-8 p-6">
-                    <h1>Websites</h1>
-                    <h1 className="text-4xl"><a href={`${props.web}`}><FontAwesomeIcon icon = {faGlobeEurope}/></a></h1>
+                    <h1>Discount</h1>
+                    <Link to = {`${props.name}/promodiscount`} className = "text-4xl">
+                        <FontAwesomeIcon icon = {faGlobeEurope} />
+                    </Link>
                 </div>
             </div>
 
@@ -76,7 +85,7 @@ class SinglePageClass extends React.PureComponent {
             favoriteMessage: this.props.favoriteMessage,
             likeButton: this.props.likeButton,
             likes: this.props.likes,
-            updated: false
+            updated: JSON.parse(localStorage.getItem("likeValue"+this.props.name))
         }
         this.updateLikes = this.updateLikes.bind(this)
       }
@@ -85,16 +94,19 @@ class SinglePageClass extends React.PureComponent {
 
     updateLikes = () => {
         if(!this.state.updated) {
-            localStorage.setItem(this.props.name, this.props.likes + 1);
+            //localStorage.setItem(this.props.name, this.props.likes);
+            localStorage.setItem("likeValue"+this.props.name, "true");
             this.setState((prevState, props) => {
                 return {
                     likes: prevState.likes + 1,
                     likeButton: 'text-green-500',
                     updated: true
                 }
+                
             })
-        } else {
             localStorage.setItem(this.props.name, this.props.likes);
+        } else {
+            localStorage.setItem('likeValue'+this.props.name, "false");
             this.setState((prevState, props) => {
                 return {
                     likes: prevState.likes - 1,
@@ -102,6 +114,7 @@ class SinglePageClass extends React.PureComponent {
                     updated: false
                 }
             })
+            localStorage.setItem(this.props.name, this.props.likes);
         }
     }
 
@@ -118,7 +131,7 @@ class SinglePageClass extends React.PureComponent {
                 array.splice(index, 1);
             }
             localStorage.setItem("favorites", JSON.stringify(this.props.favorites));
-            this.setState({ heart: 'text-gray-500', favoriteMessage: 'add to favorite' })
+            this.setState({ heart: 'text-gray-500', favoriteMessage: 'favorite' })
         }
     }
 
@@ -152,8 +165,9 @@ function SinglePage(Component) {
         let content = null
         let favorites = JSON.parse(localStorage.getItem("favorites"));
         let heart = 'text-gray-500';
-        let favoriteMessage = 'add to favorite';
-        let likes = JSON.parse(localStorage.getItem(name));
+        let favoriteMessage = 'favorite';
+        let likes = 68;
+        let likeButton = 'text-gray-500'
 
         if (beach.loading) {
             content = <Loader />
@@ -165,6 +179,11 @@ function SinglePage(Component) {
             heart = 'text-red-500';
             favoriteMessage = 'favorited'
         }
+
+        if (JSON.parse(localStorage.getItem("likeValue"+name))) {
+            likeButton = 'text-green-500'
+            likes = (JSON.parse(localStorage.getItem(name))) + 1  
+        } 
 
         if (beach.dt) {
             console.log(beach);
@@ -180,6 +199,7 @@ function SinglePage(Component) {
                 heart={heart}
                 favoriteMessage={favoriteMessage}
                 likes = {likes}
+                likeButton = {likeButton}
             />;
         }
         return (

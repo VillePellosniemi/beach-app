@@ -3,8 +3,6 @@ import Loader from '../Components/Loader';
 import { Link } from 'react-router-dom';
 import { useAxiosGet } from '../Hooks/HttpRequests';
 
-
-
 const HomeSearch = (props) => {
 
     const url = 'https://iot.fvh.fi/opendata/uiras/uiras2_v1.json'
@@ -26,7 +24,7 @@ const HomeSearch = (props) => {
 
           return (
               <h1 className="p-5" key={key} >
-                <Link to={`/${id}`} >
+                <Link to={`/${id}`}>
                   {beaches.dt[beach].meta.name}
                 </Link>
               </h1>
