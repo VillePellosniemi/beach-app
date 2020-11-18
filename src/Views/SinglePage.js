@@ -1,5 +1,5 @@
 import React from 'react';
-import { compose, withProps } from "recompose"
+import { compose } from "recompose"
 import Loader from '../Components/Loader'
 import { Link, useParams } from 'react-router-dom';
 import moment from 'moment'
@@ -17,9 +17,9 @@ const SinglePageComponent = compose(
             <h1 className="text-center font-bold text-xl">{props.beach_name} </h1>
 
             <div className="flex items-center p-3">
-                <span className="flex-1 text-center text-green-500 text-xl">
-                    <FontAwesomeIcon icon={faThumbsUp} />
-                    <h1 className="text-base">50</h1>
+                <span className="flex-1 text-center text-green-500 text-xl" onClick={props.updateLikes}>
+                    <FontAwesomeIcon icon={faThumbsUp} className={props.state.likeButton}/>
+                    <h1 className="text-base">{props.state.likes} liked</h1>
                 </span>
 
                 <span className="flex-1 text-center text-red-500 text-xl" onClick={props.onFavoriteClick}>
@@ -68,9 +68,41 @@ const SinglePageComponent = compose(
 
 
 class SinglePageClass extends React.PureComponent {
-    state = {
-        heart: this.props.heart,
-        favoriteMessage: this.props.favoriteMessage
+    constructor(props){
+
+        super(props);
+        this.state = {
+            heart: this.props.heart,
+            favoriteMessage: this.props.favoriteMessage,
+            likeButton: this.props.likeButton,
+            likes: this.props.likes,
+            updated: false
+        }
+        this.updateLikes = this.updateLikes.bind(this)
+      }
+
+    //Like function
+
+    updateLikes = () => {
+        if(!this.state.updated) {
+            localStorage.setItem(this.props.name, this.props.likes + 1);
+            this.setState((prevState, props) => {
+                return {
+                    likes: prevState.likes + 1,
+                    likeButton: 'text-green-500',
+                    updated: true
+                }
+            })
+        } else {
+            localStorage.setItem(this.props.name, this.props.likes);
+            this.setState((prevState, props) => {
+                return {
+                    likes: prevState.likes - 1,
+                    likeButton: 'text-gray-500',
+                    updated: false
+                }
+            })
+        }
     }
 
     handleFavoriteClick = () => {
@@ -93,6 +125,8 @@ class SinglePageClass extends React.PureComponent {
         }
     }
 
+    
+
     render() {
         return (
             <SinglePageComponent
@@ -104,13 +138,14 @@ class SinglePageClass extends React.PureComponent {
                 web = {this.props.web}
                 favorites={this.props.favorites}
                 time={this.props.time}
+                likes = {this.props.likes}
                 state={this.state}
                 onFavoriteClick={this.handleFavoriteClick}
+                updateLikes = {this.updateLikes}
             />
         )
     }
 }
-
 
 function SinglePage(Component) {
     return function WrappedComponent(props) {
@@ -121,6 +156,7 @@ function SinglePage(Component) {
         let favorites = JSON.parse(localStorage.getItem("favorites"));
         let heart = 'text-gray-500';
         let favoriteMessage = 'add to favorite';
+        let likes = JSON.parse(localStorage.getItem(name));
 
         if (beach.loading) {
             content = <Loader />
@@ -130,9 +166,7 @@ function SinglePage(Component) {
             heart = 'text-red-500';
             favoriteMessage = 'favorited'
         }
-        /*
-        
-        */
+
         if (beach.dt) {
             console.log(beach);
             return <Component {...props}
@@ -146,6 +180,7 @@ function SinglePage(Component) {
                 beach_name={beach.dt[name].meta.name}
                 heart={heart}
                 favoriteMessage={favoriteMessage}
+                likes = {likes}
             />;
         }
         return (
