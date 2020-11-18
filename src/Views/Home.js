@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Loader from '../Components/Loader';
 import { Link } from 'react-router-dom';
 import { useAxiosGet } from '../Hooks/HttpRequests';
@@ -35,19 +35,17 @@ function Home() {
                         <img src={`images/${id}.jpg`} className="object-cover rounded-xl h-40 w-full" />
                         
                         <div className="w-full text-white font-medium absolute bottom-0 left-3 pl-5">
-                            <h1 className="w-2/3 truncate text-2xl">{beaches.dt[beach].meta.name} </h1>
-                            <h1 className="text-base italic pb-8">{Math.round(d*10)/10} km away</h1>
+                            <h1 className="w-2/3 truncate text-2xl">{beaches.dt[beach].meta.name}</h1>
+                            <h1 className="text-base italic pb-8">{(Math.round(d*10)/10)} km away</h1>
                         </div>
                     </Link>
-
-                    
                 </div>
             )
         })
     }
 
     return (
-        <div  className="overflow-auto w-full max-h-screen"> {content} </div>
+        <div className="overflow-scroll w-full max-h-screen"> {content} </div>
     )
 }
 

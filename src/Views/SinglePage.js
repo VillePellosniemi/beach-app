@@ -5,7 +5,7 @@ import { Link, useParams } from 'react-router-dom';
 import moment from 'moment'
 import { useAxiosGet } from '../Hooks/HttpRequests';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThumbsUp, faHeart, faMap } from '@fortawesome/free-solid-svg-icons';
+import { faThumbsUp, faHeart, faMap, faGlobeEurope, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 
 const SinglePageComponent = compose(
@@ -36,26 +36,26 @@ const SinglePageComponent = compose(
             </div>
 
             <div className="flex content-center text-xl pb-2 px-2 ">
-                <div className="flex-1 text-center rounded-xl bg-gray-200 h-40 m-2 p-6">
+                <div className="flex-1 text-center rounded-xl bg-gray-200 h-40 m-2 pt-8 p-6">
                     <h1>Water temp</h1>
-                    <h1 className="text-5xl">{props.temp_water}°C </h1>
+                    <h1 className="text-4xl">{props.temp_water}°C </h1>
                 </div>
 
-                <div className="flex-1 text-center rounded-xl bg-gray-200 h-40 m-2 p-6">
+                <div className="flex-1 text-center rounded-xl bg-gray-200 h-40 m-2 pt-8 p-6">
                     <h1>Air temp</h1>
-                    <h1 className="text-5xl">{props.temp_air}°C </h1>
+                    <h1 className="text-4xl">{props.temp_air}°C </h1>
                 </div>
             </div>
-
-            <div className="flex content-center text-xl pb-x px-2 mb-5">
-                <div className="flex-1 text-center rounded-xl bg-gray-200 h-40 m-2 p-6">
-                    <h1>Facilities</h1>
-                    <h1 className="text-5xl">N/A</h1>
+            
+            <div className="flex content-center text-xl pb-2 px-2">
+                <div className="flex-1 text-center rounded-xl bg-gray-200 h-40 m-2 pt-8 p-6">
+                    <h1>Services</h1>
+                    <h1 className="text-4xl"><a href={`${props.url}?p=1&t=accessibilityDetails`}><FontAwesomeIcon icon = {faInfoCircle}/></a></h1>
                 </div>
 
-                <div className="flex-1 text-center rounded-xl bg-gray-200 h-40 m-2 p-6">
-                    <h1>Parking</h1>
-                    <h1 className="text-5xl">N/A</h1>
+                <div className="flex-1 text-center rounded-xl bg-gray-200 h-40 m-2 pt-8 p-6">
+                    <h1>Websites</h1>
+                    <h1 className="text-4xl"><a href={`${props.web}`}><FontAwesomeIcon icon = {faGlobeEurope}/></a></h1>
                 </div>
             </div>
 
@@ -97,6 +97,8 @@ class SinglePageClass extends React.PureComponent {
                 name={this.props.name}
                 temp_water={this.props.temp_water}
                 temp_air={this.props.temp_air}
+                url = {this.props.url}
+                web = {this.props.web}
                 favorites={this.props.favorites}
                 time={this.props.time}
                 state={this.state}
@@ -133,9 +135,11 @@ function SinglePage(Component) {
         if (beach.dt) {
             console.log(beach);
             return <Component {...props}
-                time={moment(beach.dt[name].data.slice(-1)[0].time).fromNow()}
+                time = {moment(beach.dt[name].data.slice(-1)[0].time).fromNow()}
                 temp_water={Math.round(beach.dt[name].data.slice(-1)[0].temp_water * 10) / 10}
                 temp_air={Math.round(beach.dt[name].data.slice(-1)[0].temp_air * 10) / 10}
+                url = {beach.dt[name].meta.servicemap_url}
+                web = {beach.dt[name].meta.site_url}
                 favorites={favorites}
                 name={name}
                 beach_name={beach.dt[name].meta.name}

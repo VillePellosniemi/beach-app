@@ -48,7 +48,7 @@ function Search() {
                     key={key} 
                     style={props}
                     style={centered}
-                    className = "w-3/4 h-2/3 items-center bg-white rounded-xl pb-10 shadow z-50 px-3"
+                    className = "w-4/5 items-center bg-white rounded-xl pb-10 shadow z-50 px-3"
                 >
                     <AdvanceSearch />
                 </animated.div>
