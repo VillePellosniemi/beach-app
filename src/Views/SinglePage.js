@@ -14,7 +14,7 @@ const SinglePageComponent = compose(
         <img src={`images/${props.name}.jpg`} className="relative object-cover h-60 w-full" />
 
         <div className="absolute w-full -mt-20 rounded-t-3xl bg-white py-8 mb-6">
-            <h1 className="text-center font-bold text-3xl">{props.beach_name} </h1>
+            <h1 className="text-center font-bold text-2xl">{props.beach_name} </h1>
 
             <div className="flex items-center p-3">
                 <span className="flex-1 text-center text-green-500 text-xl" onClick={props.updateLikes}>
