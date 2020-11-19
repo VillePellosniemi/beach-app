@@ -8,6 +8,7 @@ import { usePosition } from 'use-position';
 function Home() {
     const url = 'https://iot.fvh.fi/opendata/uiras/uiras2_v1.json'
     let beaches = useAxiosGet(url)
+    let newBeaches = [];
     let content = null
     //Get user current location
     const watch = true;
@@ -20,7 +21,9 @@ function Home() {
     }
 
     if(beaches.dt) {
-        content = Object.keys(beaches.dt).map((beach, key) => {
+        content = Object.keys(beaches.dt).sort(function(a,b){
+            return distanceCal(beaches.dt[a].meta.lat, beaches.dt[a].meta.lon, lat1, lon1) - distanceCal(beaches.dt[b].meta.lat, beaches.dt[b].meta.lon, lat1, lon1)
+        }).map((beach, key) => {
             //get beach ID from API
             const id = Object.values(beach).join("")
 
@@ -28,6 +31,7 @@ function Home() {
             const lat = beaches.dt[beach].meta.lat
             const long = beaches.dt[beach].meta.lon
             const d = distanceCal(lat, long, lat1, lon1)/1000
+
 
             return (
                     <div className = "block relative pb-5 px-5" key = {key}>
