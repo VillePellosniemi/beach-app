@@ -5,7 +5,7 @@ import { Link, useParams } from 'react-router-dom';
 import moment from 'moment'
 import { useAxiosGet } from '../Hooks/HttpRequests';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThumbsUp, faHeart, faMap, faGlobeEurope, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { faThumbsUp, faHeart, faMap, faGlobeEurope, faInfoCircle, faTags } from '@fortawesome/free-solid-svg-icons';
 
 
 const SinglePageComponent = compose(
@@ -63,7 +63,7 @@ const SinglePageComponent = compose(
                 <div className="flex-1 text-center rounded-xl bg-gray-200 h-40 m-2 pt-8 p-6">
                     <h1>Discount</h1>
                     <Link to = {`${props.name}/promodiscount`} className = "text-4xl">
-                        <FontAwesomeIcon icon = {faGlobeEurope} />
+                        <FontAwesomeIcon icon = {faTags} />
                     </Link>
                 </div>
             </div>
@@ -85,17 +85,15 @@ class SinglePageClass extends React.PureComponent {
             favoriteMessage: this.props.favoriteMessage,
             likeButton: this.props.likeButton,
             likes: this.props.likes,
-            updated: JSON.parse(localStorage.getItem("likeValue"+this.props.name))
+            updated: JSON.parse(localStorage.getItem(this.props.name))
         }
         this.updateLikes = this.updateLikes.bind(this)
       }
 
-    //Like function
-
+    ////////////////////////////////// Like ////////////////////////////////
     updateLikes = () => {
         if(!this.state.updated) {
-            //localStorage.setItem(this.props.name, this.props.likes);
-            localStorage.setItem("likeValue"+this.props.name, "true");
+            localStorage.setItem(this.props.name, "true");
             this.setState((prevState, props) => {
                 return {
                     likes: prevState.likes + 1,
@@ -104,9 +102,9 @@ class SinglePageClass extends React.PureComponent {
                 }
                 
             })
-            localStorage.setItem(this.props.name, this.props.likes);
+            //localStorage.setItem(this.props.name, this.props.likes);
         } else {
-            localStorage.setItem('likeValue'+this.props.name, "false");
+            localStorage.setItem(this.props.name, "false");
             this.setState((prevState, props) => {
                 return {
                     likes: prevState.likes - 1,
@@ -114,10 +112,11 @@ class SinglePageClass extends React.PureComponent {
                     updated: false
                 }
             })
-            localStorage.setItem(this.props.name, this.props.likes);
+            //localStorage.setItem(this.props.name, this.props.likes);
         }
     }
 
+    /////////////////////////Add to favorite/////////////////////////////////////
     handleFavoriteClick = () => {
         console.log("Favorite clicked! ", this.props.name);
         if (!this.props.favorites.includes(this.props.name)) {
@@ -180,9 +179,9 @@ function SinglePage(Component) {
             favoriteMessage = 'favorited'
         }
 
-        if (JSON.parse(localStorage.getItem("likeValue"+name))) {
+        if (JSON.parse(localStorage.getItem(name))) {
             likeButton = 'text-green-500'
-            likes = (JSON.parse(localStorage.getItem(name))) + 1  
+            likes = likes + 1
         } 
 
         if (beach.dt) {
