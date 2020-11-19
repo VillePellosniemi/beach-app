@@ -11,7 +11,7 @@ const MapComponent = compose(
     googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",
     loadingElement: <div style={{ height: `80%` }} />,
     containerElement: <div style={{ height: `400px` }} />,
-    mapElement: <div style={{ height: '95vh', width: '100%' }} />,
+    mapElement: <div style={{ height: '95vh', width: '100%', marginBottom: '1.5rem' }} />,
   }),
   withScriptjs,
   withGoogleMap

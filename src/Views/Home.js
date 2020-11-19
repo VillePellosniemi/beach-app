@@ -45,7 +45,7 @@ function Home() {
     }
 
     return (
-            <div className="overflow-scroll w-full max-h-screen pt-5"> {content} </div>
+            <div className="overflow-scroll w-full max-h-full pt-5 mb-6"> {content} </div>
     )
 }
 

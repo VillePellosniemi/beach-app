@@ -13,7 +13,7 @@ const SinglePageComponent = compose(
     <div className="bg-gray-100">
         <img src={`images/${props.name}.jpg`} className="relative object-cover h-60 w-full" />
 
-        <div className="absolute w-full -mt-20 rounded-t-3xl bg-white py-8">
+        <div className="absolute w-full -mt-20 rounded-t-3xl bg-white py-8 mb-6">
             <h1 className="text-center font-bold text-3xl">{props.beach_name} </h1>
 
             <div className="flex items-center p-3">
@@ -202,7 +202,7 @@ function SinglePage(Component) {
             />;
         }
         return (
-            <div> {content} </div>
+            <div className=""> {content} </div>
         )
     }
 }

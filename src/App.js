@@ -1,6 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import Header from './Components/Header';
+import Footer from './Components/Footer';
 import Home from './Views/Home';
 import Favorites from './Views/Favorites';
 import PromoDiscount from './Views/PromoDiscount';
@@ -23,6 +24,8 @@ function App() {
               <Route exact path = "/:name"><SinglePage /></Route>
               <Route exact path = "/:name/map"><Map /></Route>
           </Switch>
+
+          <Footer />
       </Router>
     </div>
   ); 
