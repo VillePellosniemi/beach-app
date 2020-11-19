@@ -49,7 +49,10 @@ function Home() {
     }
 
     return (
-            <div className="overflow-scroll w-full max-h-full pt-5"> {content} </div>
+            <div>
+                <h1 className = "font-bold text-lg text-left pl-5">Beaches near you</h1>
+                <div className="overflow-scroll w-full max-h-full pt-5"> {content} </div>
+            </div>
     )
 }
 
