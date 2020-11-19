@@ -25,7 +25,7 @@ function App() {
               <Route exact path = "/:name/map"><Map /></Route>
           </Switch>
 
-          <Footer />
+          {/*<Footer />*/}
       </Router>
     </div>
   ); 

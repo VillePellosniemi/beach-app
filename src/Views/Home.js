@@ -32,7 +32,7 @@ function Home() {
             return (
                     <div className = "block relative pb-5 px-5" key = {key}>
                         <Link to = {`/${id}`}>
-                            <img src={`images/${id}.jpg`} className="object-cover rounded-xl h-40 w-full" />
+                            <img src={`images/${id}.jpg`} style = {{height:"135px"}} className="object-cover rounded-xl w-full" />
                             
                             <div className="w-full text-white font-medium absolute bottom-0 left-3 pl-5">
                                 <h1 className="w-2/3 truncate text-2xl">{beaches.dt[beach].meta.name}</h1>
@@ -45,7 +45,7 @@ function Home() {
     }
 
     return (
-            <div className="overflow-scroll w-full max-h-full pt-5 mb-6"> {content} </div>
+            <div className="overflow-scroll w-full max-h-full pt-5"> {content} </div>
     )
 }
 
