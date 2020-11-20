@@ -19,6 +19,7 @@ function Search() {
         config: { duration: 100 }
         })
     
+    
     return (
         <div>
             <span className="text-center text-xl font-bold p-3">
@@ -50,7 +51,7 @@ function Search() {
                     style={centered}
                     className = "w-4/5 items-center bg-white rounded-xl pb-10 shadow z-50 px-3"
                 >
-                    <AdvanceSearch />
+                    <AdvanceSearch closeMenu = {() => setShowSearch(false)}/>
                 </animated.div>
                 )
             }

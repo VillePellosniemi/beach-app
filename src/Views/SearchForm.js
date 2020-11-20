@@ -1,13 +1,14 @@
 import React from 'react';
 import HomeSearch from "./HomeSearch";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-
 
 class SearchForm extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
    state = {
             beachName: '',
-            submitted: false
+            submitted: false,
     };
 
     handleChange = event => {
@@ -25,6 +26,7 @@ class SearchForm extends React.Component {
     };
 
     render() {
+        console.log(this.props)
         return (
             <React.Fragment>
                 <h1 className="text-center text-xl font-bold">Search</h1>
@@ -42,13 +44,12 @@ class SearchForm extends React.Component {
                 </form>
 
                 <div>
-                    {this.state.submitted ? <HomeSearch beachName={this.state.beachName}/> : null}
+                    {this.state.submitted ? <HomeSearch beachName={this.state.beachName} onClick = {this.props.closeMenu}/> : null}
                 </div>
                 
             </React.Fragment>
 
         )
-
     }
 }
 

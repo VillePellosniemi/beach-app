@@ -8,8 +8,7 @@ const HomeSearch = (props) => {
     const url = 'https://iot.fvh.fi/opendata/uiras/uiras2_v1.json'
     let beaches = useAxiosGet(url)
     let content = null;
-
-
+    
     if (beaches.loading) {
       content = <Loader/>
     }
