@@ -44,7 +44,7 @@ class SearchForm extends React.Component {
                 </form>
 
                 <div>
-                    {this.state.submitted ? <HomeSearch beachName={this.state.beachName} onClick = {this.props.closeMenu}/> : null}
+                    {this.state.submitted ? <HomeSearch beachName={this.state.beachName} closeMenu = {this.props.closeMenu} /> : null}
                 </div>
                 
             </React.Fragment>

@@ -23,7 +23,7 @@ const HomeSearch = (props) => {
 
           return (
               <h1 className="p-5" key={key} >
-                <Link to={`/${id}`}>
+                <Link to={`/${id}`} onClick= {props.closeMenu}>
                   {beaches.dt[beach].meta.name}
                 </Link>
               </h1>
