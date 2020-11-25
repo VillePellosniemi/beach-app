@@ -1,6 +1,6 @@
 # City Swimmer
 
-City Swimmer is a React web base mobile app for swimmer and beach enthusiast, where you can the nearest beaches around you with up-to-date weather information of the beaches.
+City Swimmer is a React web-based mobile app for swimmer and beach enthusiast, where you can find the nearest beaches around you with up-to-date weather information of the beaches.
 
 ### Installation
 
