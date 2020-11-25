@@ -1,9 +1,14 @@
-## In the project directory, you can run    
+# City Swimmer
 
-In the project directory, you can run:
+City Swimmer is a React web base mobile app for swimmer and beach enthusiast, where you can the nearest beaches around you with up-to-date weather information of the beaches.
 
-### `yarn`
-### `yarn start`
+### Installation
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+City Swimmer requires [Node.js](https://nodejs.org/) to run.
+Install the dependencies and start the server (http://localhost:3000).
+
+```sh
+$ cd beach-app
+$ yarn
+$ yarn start
+```
