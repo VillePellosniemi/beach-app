@@ -35,7 +35,7 @@ function Home() {
 
             return (
                     <div className = "block relative pb-5 px-5" key = {key}>
-                        <Link to = {`/${id}`}>
+                        <Link to = {`/~lauriaus/build/${id}`}>
                             <img src={`images/${id}.jpg`} style = {{height:"135px"}} className="object-cover rounded-xl w-full" />
                             
                             <div className="w-full text-white font-medium absolute bottom-0 left-3 pl-5">

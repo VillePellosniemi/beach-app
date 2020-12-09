@@ -17,12 +17,12 @@ function App() {
           <Header/>
 
           <Switch>
-              <Route exact path = "/"><Home/></Route>
-              <Route exact path = "/favorites"><Favorites /></Route>
-              <Route exact path = "/:name/promodiscount"><PromoDiscount /></Route>
-              <Route exact path = "/setting"><Setting /></Route>
-              <Route exact path = "/:name"><SinglePage /></Route>
-              <Route exact path = "/:name/map"><Map /></Route>
+              <Route exact path = "/~lauriaus/build/"><Home/></Route>
+              <Route exact path = "/~lauriaus/build/favorites"><Favorites /></Route>
+              <Route exact path = "/~lauriaus/build/:name/promodiscount"><PromoDiscount /></Route>
+              <Route exact path = "/~lauriaus/build/setting"><Setting /></Route>
+              <Route exact path = "/~lauriaus/build/:name"><SinglePage /></Route>
+              <Route exact path = "/~lauriaus/build/:name/map"><Map /></Route>
           </Switch>
 
           {/*<Footer />*/}

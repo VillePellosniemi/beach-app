@@ -28,7 +28,7 @@ const SinglePageComponent = compose(
                 </span>
 
                 <span className="flex-1 text-center text-blue-500 text-xl">
-                    <Link to={`/${props.name}/map`}>
+                    <Link to={`/~lauriaus/build/${props.name}/map`}>
                         <FontAwesomeIcon icon={faMap} />
                         <h1 className="text-base">map</h1>
                     </Link>

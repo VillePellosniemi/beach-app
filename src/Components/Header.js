@@ -9,7 +9,7 @@ function Header() {
             <div className = "flex-1"><Navigation /></div>
             
             <span className="flex-1 items-center" onClick={ refreshPage }>
-                <img src="../logo.png" className="object-cover h-auto w-auto ml-auto mr-auto" />
+                <img src="logo.png" className="object-cover h-auto w-auto ml-auto mr-auto" />
             </span>
 
             <div className = "flex-1 text-right"><Search /></div>
@@ -18,7 +18,7 @@ function Header() {
 }
 
 function refreshPage(){
-    window.location.assign("/")
+    window.location.assign("http://users.metropolia.fi/~lauriaus/build/")
 }
 
 export default Header

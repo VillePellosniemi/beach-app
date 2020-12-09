@@ -23,7 +23,7 @@ function Favorites() {
 
             return (
                 <div className = "block relative pt-4 px-5" key = {key}> 
-                    <Link to = {`/${id}`}>
+                    <Link to = {`/~lauriaus/build/${id}`}>
                         <img src={`images/${id}.jpg`} className="object-cover rounded-xl h-24 w-full" />
                         <div className="w-2/3 truncate text-white text-xl font-medium absolute bottom-0 left-3 pl-3 pb-3">{beaches.dt[beach].meta.name} </div>
                     </Link>
