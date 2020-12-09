@@ -26,7 +26,6 @@
     "use-position": "^0.0.8"
   },
   "scripts": {
-    "homepage": ".",
     "build:css": "postcss src/index.css -o src/tailwind.css",
     "watch:css": "postcss src/index.css -o src/tailwind.css -w",
     "start": "yarn build:css && react-scripts start",
@@ -34,6 +33,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "homepage": ".",
   "eslintConfig": {
     "extends": "react-app"
   },
